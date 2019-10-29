@@ -85,7 +85,36 @@ public class UserController {
         return "Created new user: " + result.toString();
     }
 
+    @DeleteMapping("/delete/{id}")
+    public String deleteUser(@PathVariable int id) {
+        User result = userService.findById(id);
+        if (result == null) {
+            return "User not found";
+        }
+        User tmp = result;
+        userService.delete(result);
 
+        return "User " + tmp.toString() + " deleted";
+    }
+
+    @PutMapping("/update/{id}")
+    public String updateUser(@PathVariable int id, @RequestBody User newuser) {
+        User result = userService.findById(id);
+        if (result == null) {
+            return "User not found";
+        }
+        User tmp = result;
+        result.update(newuser.getLogin(), newuser.getFirstName(), newuser.getLastName(), newuser.getDateOfBirth(), newuser.getActive());
+        userService.save(result);
+
+        return "User " + tmp.toString() + " updated to: " + result.toString();
+    }
+
+    //find user by id
+    @GetMapping("/retreive/{id}")
+    public User retreive(@PathVariable int id){
+        return userService.findById(id);
+    }
 
     //note:
     //I haven't really checked those thoroughly as it's 23:58 so I kinda have 1 minute to commit and push it
