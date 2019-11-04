@@ -22,11 +22,11 @@ public class UserService {
         return ret;
     }
 
-//    public User updateUser(User user) {
-//        User existingUser = UserRepository.findById(user.getId());
-//        if (existingUser!=null) {
-//            return UserRepository.save(user);
-//        }
-//        throw new ResourceNotFoundException(String.format("User with id [%s] not found.", user.getId()));
-//    }
+    public User updateUser(User user) {
+        User existingUser = UserRepository.findById(user.getId());
+        if (existingUser!=null) {
+            return UserRepository.save(user);
+        }
+        throw new ResourceNotFoundException(String.format("User with id [%s] not found.", user.getId()));
+    }
 }

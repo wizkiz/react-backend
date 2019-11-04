@@ -72,29 +72,29 @@ public class UserController {
         return ResponseEntity.ok().body(repository.save(user));
     }
 
-//    //delete user by id
-//    @DeleteMapping("/{id}")
-//    public ResponseEntity<User> deleteUser(@PathVariable int id) {
-//        User tmp = repository.findById(id);
-//        if(tmp!=null){
-//            repository.delete(repository.findById(id));
-//        }
-//        return ResponseEntity.ok(tmp);
-//    }
-//
-//    //update user by id
-//    @PatchMapping("/{id}")
-//    public ResponseEntity<User> updateUser(@PathVariable int id, @RequestBody @Valid User newUser) {
-//        if(repository.findById(id)==null){
-//            return ResponseEntity.ok().body(repository.save(newUser));
-//        }
-//        return ResponseEntity.ok().body(userService.updateUser(newUser));
-//    }
-//
-//    //find user by id
-//    @GetMapping("/{id}")
-//    public ResponseEntity<User> findUser(@PathVariable long id){
-//        return ResponseEntity.ok().body(repository.findById(id));
-//    }
+    //delete user by id
+    @DeleteMapping("/{id}")
+    public ResponseEntity<User> deleteUser(@PathVariable int id) {
+        User tmp = repository.findById(id);
+        if(tmp!=null){
+            repository.delete(repository.findById(id));
+        }
+        return ResponseEntity.ok(tmp);
+    }
+
+    //update user by id
+    @PatchMapping("/{id}")
+    public ResponseEntity<User> updateUser(@PathVariable int id, @RequestBody @Valid User newUser) {
+        if(repository.findById(id)==null){
+            return ResponseEntity.ok().body(repository.save(newUser));
+        }
+        return ResponseEntity.ok().body(userService.updateUser(newUser));
+    }
+
+    //find user by id
+    @GetMapping("/{id}")
+    public ResponseEntity<User> findUser(@PathVariable long id){
+        return ResponseEntity.ok().body(repository.findById(id));
+    }
 
 }
