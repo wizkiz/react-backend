@@ -7,6 +7,6 @@ import java.util.List;
 
 @Repository
 public interface UserRepository extends JpaRepository<User, Long> {
-    User findByLogin(String login);
-    User findById(int Id);
+    List<User> findByLogin(String login);
+    //User findById(long Id);
 }
