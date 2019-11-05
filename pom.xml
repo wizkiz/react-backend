@@ -19,6 +19,25 @@
 	</properties>
 
 	<dependencies>
+
+		<dependency>
+
+			<groupId>com.h2database</groupId>
+
+			<artifactId>h2</artifactId>
+
+		</dependency>
+		<dependency>
+			<groupId>org.assertj</groupId>
+			<artifactId>assertj-core-java8</artifactId>
+			<version>1.0.0m1</version>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.mockito</groupId>
+			<artifactId>mockito-core</artifactId>
+			<version>3.1.0</version>
+		</dependency>
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-actuator</artifactId>
@@ -66,7 +85,7 @@
 				<artifactId>spring-boot-maven-plugin</artifactId>
                 <configuration>
                     <profiles>
-                        <profile>dev</profile>
+                        <profile>it</profile>
                     </profiles>
                 </configuration>
 			</plugin>

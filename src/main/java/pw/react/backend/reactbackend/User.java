@@ -47,10 +47,22 @@ public class User implements Serializable {
     public LocalDate getDateOfBirth() {return this.dateOfBirth; }
     public long getId() {return this.id; }
 
-    @Override
-    public String toString() {
-        return String.format("User: id=%d, login=%s, firstName=%s, lastName=%s, is_active=%B, date_of_birth=%s", id, login,firstName, lastName, active, dateOfBirth.toString());
+    public void setId(long id) {
+        this.id=id;
     }
+
+    public void setLogin(String login) {
+        this.login=login;
+    }
+
+//    @Override
+//    public String toString() {
+//        if(this.id==0){
+//            return String.format("Empty object");
+//        } else {
+//            return String.format("User: id=%d, login=%s, firstName=%s, lastName=%s, is_active=%B, date_of_birth=%s", id, login,firstName, lastName, active, dateOfBirth.toString());
+//        }
+//    }
 
 }
 
