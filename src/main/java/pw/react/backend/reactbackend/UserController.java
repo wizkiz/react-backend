@@ -1,16 +1,23 @@
 package pw.react.backend.reactbackend;
 
 import org.apache.tomcat.jni.Local;
+import org.apache.tomcat.util.http.fileupload.IOUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.stereotype.Repository;
+import org.springframework.util.StreamUtils;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.multipart.MultipartFile;
 
 import javax.jws.soap.SOAPBinding;
 import javax.persistence.*;
+import javax.print.attribute.standard.Media;
 import javax.validation.Valid;
+import java.io.IOException;
+import java.io.InputStream;
 import java.io.Serializable;
 import java.time.LocalDate;
 import java.util.Arrays;
@@ -104,4 +111,33 @@ public class UserController {
         return ResponseEntity.ok().body(repository.findById(id));
     }
 
+    //
+    @GetMapping(
+            path = "/img",
+            produces = MediaType.IMAGE_JPEG_VALUE
+    )
+    public @ResponseBody byte[] getImageWithMediaType() throws IOException {
+        InputStream in = getClass().getResourceAsStream("/xd.jpg");
+        byte [] res = StreamUtils.copyToByteArray(in);
+        return res;
+    }
+
+    @PatchMapping(path = "/{id}/upload",
+        produces = MediaType.IMAGE_JPEG_VALUE)
+    public @ResponseBody byte[] uploadFileToUser(@RequestParam("file") MultipartFile file, @PathVariable long id) throws IOException {
+        byte [] res = null;
+        User user = repository.findById(id);
+        if(user!=null) {
+
+            res=file.getBytes();
+            user.setProfilePicture(res);
+            userService.updateUser(user);
+        }
+        return res;
+    }
+    @GetMapping(path = "/{id}/profilepic",
+        produces = MediaType.IMAGE_JPEG_VALUE)
+    public @ResponseBody byte[] showPorfilePic(@PathVariable long id){
+        return repository.findById(id).getProfilePicture();
+    }
 }

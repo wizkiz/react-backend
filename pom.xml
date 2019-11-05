@@ -85,7 +85,7 @@
 				<artifactId>spring-boot-maven-plugin</artifactId>
                 <configuration>
                     <profiles>
-                        <profile>it</profile>
+                        <profile>dev</profile>
                     </profiles>
                 </configuration>
 			</plugin>

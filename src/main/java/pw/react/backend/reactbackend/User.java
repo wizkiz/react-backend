@@ -1,6 +1,7 @@
 package pw.react.backend.reactbackend;
 
 import org.apache.tomcat.jni.Local;
+import org.hibernate.annotations.Type;
 
 import javax.persistence.*;
 import java.io.Serializable;
@@ -26,6 +27,8 @@ public class User implements Serializable {
     private LocalDate dateOfBirth;
     @Column(name = "active")
     private Boolean active;
+    @Column(name = "profilepicture")
+    private byte[] profilePicture;
 
 
     public User(String wizkiz, String szymon, String majorek, LocalDate dob, boolean b) {
@@ -51,18 +54,17 @@ public class User implements Serializable {
         this.id=id;
     }
 
+    public byte[] getProfilePicture() {
+        return profilePicture;
+    }
+
+    public void setProfilePicture(byte[] profilePicture) {
+        this.profilePicture = profilePicture;
+    }
+
     public void setLogin(String login) {
         this.login=login;
     }
-
-//    @Override
-//    public String toString() {
-//        if(this.id==0){
-//            return String.format("Empty object");
-//        } else {
-//            return String.format("User: id=%d, login=%s, firstName=%s, lastName=%s, is_active=%B, date_of_birth=%s", id, login,firstName, lastName, active, dateOfBirth.toString());
-//        }
-//    }
 
 }
 
